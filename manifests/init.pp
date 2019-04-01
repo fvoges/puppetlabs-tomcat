@@ -41,7 +41,10 @@ class tomcat (
     fail('install_from_source is no longer available in the base class. Please use install_from_source on a specific tomcat::install declaration instead.') # lint:ignore:140chars
   }
   case $::osfamily {
-    'windows','Solaris','Darwin': {
+    'windows': {
+      warning("Experimenal osfamily: ${::osfamily}")
+    }
+    'Solaris','Darwin': {
       fail("Unsupported osfamily: ${::osfamily}")
     }
     default: { }
