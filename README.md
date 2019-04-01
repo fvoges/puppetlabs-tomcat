@@ -121,7 +121,7 @@ tomcat::config::server::connector { 'tomcat7-ajp':
 ### I want to configure SSL and specify which protocols and ciphers to use
 
 ```puppet
-  file { $keystore_path: 
+  file { $keystore_path:
     ensure => present,
     source => $keystore_source,
     owner => $keystore_user,
@@ -144,7 +144,7 @@ tomcat::config::server::connector { 'tomcat7-ajp':
       'sslProtocol'         => $https_connector_ssl_protocol,
       'sslEnabledProtocols' => join($https_connector_ssl_protocols_enabled, ","),
       'ciphers'             => join($ciphers_enabled, ","),
-      
+
       'keystorePass'        => $keystore_pass.unwrap,
       'keystoreFile'        => $keystore_path,
     },
@@ -156,6 +156,7 @@ tomcat::config::server::connector { 'tomcat7-ajp':
 ### I want to deploy WAR files
 
 Add the following to any existing installation with your own war source:
+
 ```puppet
 tomcat::war { 'sample.war':
   catalina_base => '/opt/tomcat9/first',
