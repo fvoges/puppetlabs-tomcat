@@ -2,20 +2,25 @@
 
 #### Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with tomcat](#setup)
-    * [Setup requirements](#requirements)
-    * [Beginning with tomcat](#beginning-with-tomcat)
-4. [Usage - Configuration options and additional functionality](#usage)
-    * [I want to run multiple instances of multiple versions of Tomcat](#i-want-to-run-multiple-instances-of-multiple-versions-of-tomcat)
-    * [I want to configure SSL and specify which protocols and ciphers to use](#i-want-to-configure-ssl-and-specify-which-protocols-and-ciphers-to-use)
-    * [I want to deploy WAR files.](#i-want-to-deploy-war-files)
-    * [I want to remove some configuration](#i-want-to-remove-some-configuration)
-    * [I want to manage a Connector or Realm that already exists](#i-want-to-manage-a-connector-or-realm-that-already-exists)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-6. [Limitations - OS compatibility, etc.](#limitations)
-7. [Development - Guide for contributing to the module](#development)
+- [tomcat](#tomcat)
+      - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Module Description](#module-description)
+  - [Setup](#setup)
+    - [Requirements](#requirements)
+    - [Beginning with tomcat](#beginning-with-tomcat)
+  - [Usage](#usage)
+    - [I want to run multiple instances of multiple versions of Tomcat](#i-want-to-run-multiple-instances-of-multiple-versions-of-tomcat)
+    - [I want to configure SSL and specify which protocols and ciphers to use](#i-want-to-configure-ssl-and-specify-which-protocols-and-ciphers-to-use)
+    - [I want to deploy WAR files](#i-want-to-deploy-war-files)
+    - [I want to remove some configuration](#i-want-to-remove-some-configuration)
+    - [I want to manage a Connector or Realm that already exists](#i-want-to-manage-a-connector-or-realm-that-already-exists)
+  - [Reference](#reference)
+  - [Limitations](#limitations)
+    - [Multiple Instances](#multiple-instances)
+  - [Development](#development)
+    - [Contributors](#contributors)
+    - [Running tests](#running-tests)
 
 ## Overview
 
@@ -199,6 +204,8 @@ See [REFERENCE.md](https://github.com/puppetlabs/puppetlabs-tomcat/blob/master/R
 For an extensive list of supported operating systems, see [metadata.json](https://github.com/puppetlabs/puppetlabs-tomcat/blob/master/metadata.json)
 
 The `tomcat::config::server*` defined types require Augeas version 1.0.0 or newer.
+
+Windows should be considered experimental and it's not a supported OS at this point. Pull requests are welcome.
 
 ### Multiple Instances
 
