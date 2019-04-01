@@ -1,0 +1,47 @@
+---
+# TODO: have onceover results published as test results in junit format, if possible
+
+resources:
+  containers:
+  - container: ruby244
+    image: ruby:2.4.4
+  - container: ruby251
+    image: ruby:2.5.1
+
+jobs:
+- job: Syntax
+  pool:
+    vmImage: 'ubuntu-16.04'
+  container: ruby251
+  steps:
+    - script: bundle -v
+    - script: rm Gemfile.lock || true
+    - script: gem update --system $RUBYGEMS_VERSION
+    - script: gem --version
+    - script: bundle -v
+    - script: bundle install --without system_tests --path vendor/bundle --jobs $(nproc)
+    - script: bundle exec rake syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
+
+- job: 'Unit Test'
+  pool:
+    vmImage: 'ubuntu-16.04'
+  container: $[ variables['rubyContainer'] ]
+  strategy:
+    matrix:
+      Puppet5:
+        rubyContainer: 'ruby244'
+        puppet_gem_version: '~>5.0'
+      Puppet6:
+        rubyContainer: 'ruby251'
+        puppet_gem_version: '~>6.0'
+  steps:
+    - script: printenv
+    - script: bundle -v
+    - script: rm Gemfile.lock || true
+    - script: gem update --system $RUBYGEMS_VERSION
+    - script: gem --version
+    - script: bundle -v
+    - script: bundle install --without system_tests --path vendor/bundle --jobs $(nproc)
+    - script: bundle exec rake parallel_spec
+
+
